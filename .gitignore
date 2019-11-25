@@ -1,3 +1,4 @@
+ 
 # ignore IDE/hidden/OS cache files
 .*
 *~
@@ -10,12 +11,16 @@ Session.vim
 tmtags
 Thumbs.db
 Desktop.ini
+
 # ignore Composer downloads
-/vendor
+/vendor/*
+*.lock
+
 # keep some hiddens
 !.htaccess
 !/.gitignore
 .travis.yml
+
 # ignore keys
 
 lib/Interceptor/*.p12
