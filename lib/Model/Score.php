@@ -12,15 +12,15 @@ class Score implements ModelInterface, ArrayAccess
     protected static $apihubModelName = 'Score';
     
     protected static $apihubTypes = [
-        'nombre_score' => 'string',
         'score' => 'string',
-        'razones' => '\RccLightSimulacion\Client\Model\Razon[]'
+        'razones' => '\RccLightSimulacion\Client\Model\Razon[]',
+        'codigo' => 'string'
     ];
     
     protected static $apihubFormats = [
-        'nombre_score' => null,
         'score' => null,
-        'razones' => null
+        'razones' => null,
+        'codigo' => null
     ];
     
     public static function apihubTypes()
@@ -34,21 +34,21 @@ class Score implements ModelInterface, ArrayAccess
     }
     
     protected static $attributeMap = [
-        'nombre_score' => 'nombreScore',
         'score' => 'score',
-        'razones' => 'razones'
+        'razones' => 'razones',
+        'codigo' => 'codigo'
     ];
     
     protected static $setters = [
-        'nombre_score' => 'setNombreScore',
         'score' => 'setScore',
-        'razones' => 'setRazones'
+        'razones' => 'setRazones',
+        'codigo' => 'setCodigo'
     ];
     
     protected static $getters = [
-        'nombre_score' => 'getNombreScore',
         'score' => 'getScore',
-        'razones' => 'getRazones'
+        'razones' => 'getRazones',
+        'codigo' => 'getCodigo'
     ];
     
     public static function attributeMap()
@@ -77,9 +77,9 @@ class Score implements ModelInterface, ArrayAccess
     
     public function __construct(array $data = null)
     {
-        $this->container['nombre_score'] = isset($data['nombre_score']) ? $data['nombre_score'] : null;
         $this->container['score'] = isset($data['score']) ? $data['score'] : null;
         $this->container['razones'] = isset($data['razones']) ? $data['razones'] : null;
+        $this->container['codigo'] = isset($data['codigo']) ? $data['codigo'] : null;
     }
     
     public function listInvalidProperties()
@@ -91,17 +91,6 @@ class Score implements ModelInterface, ArrayAccess
     public function valid()
     {
         return count($this->listInvalidProperties()) === 0;
-    }
-    
-    public function getNombreScore()
-    {
-        return $this->container['nombre_score'];
-    }
-    
-    public function setNombreScore($nombre_score)
-    {
-        $this->container['nombre_score'] = $nombre_score;
-        return $this;
     }
     
     public function getScore()
@@ -123,6 +112,17 @@ class Score implements ModelInterface, ArrayAccess
     public function setRazones($razones)
     {
         $this->container['razones'] = $razones;
+        return $this;
+    }
+    
+    public function getCodigo()
+    {
+        return $this->container['codigo'];
+    }
+    
+    public function setCodigo($codigo)
+    {
+        $this->container['codigo'] = $codigo;
         return $this;
     }
     

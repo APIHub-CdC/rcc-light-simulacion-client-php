@@ -13,28 +13,28 @@ class Domicilio implements ModelInterface, ArrayAccess
     
     protected static $apihubTypes = [
         'direccion' => 'string',
-        'colonia' => 'string',
-        'municipio' => 'string',
+        'colonia_poblacion' => 'string',
         'ciudad' => 'string',
         'estado' => '\RccLightSimulacion\Client\Model\CatalogoEstados',
-        'codigo_postal' => 'string',
+        'delegacion_municipio' => 'string',
+        'cp' => 'string',
+        'id_domicilio' => 'string',
+        'tipo_asentamiento' => '\RccLightSimulacion\Client\Model\CatalogoTipoAsentamiento',
         'fecha_residencia' => 'string',
-        'numero_telefono' => 'string',
-        'tipo_domicilio' => '\RccLightSimulacion\Client\Model\CatalogoTipoDomicilio',
-        'tipo_asentamiento' => '\RccLightSimulacion\Client\Model\CatalogoTipoAsentamiento'
+        'fecha_registro_domicilio' => 'string'
     ];
     
     protected static $apihubFormats = [
         'direccion' => null,
-        'colonia' => null,
-        'municipio' => null,
+        'colonia_poblacion' => null,
         'ciudad' => null,
         'estado' => null,
-        'codigo_postal' => null,
+        'delegacion_municipio' => null,
+        'cp' => null,
+        'id_domicilio' => null,
+        'tipo_asentamiento' => null,
         'fecha_residencia' => 'yyyy-MM-dd',
-        'numero_telefono' => null,
-        'tipo_domicilio' => null,
-        'tipo_asentamiento' => null
+        'fecha_registro_domicilio' => 'yyyy-MM-dd'
     ];
     
     public static function apihubTypes()
@@ -49,41 +49,41 @@ class Domicilio implements ModelInterface, ArrayAccess
     
     protected static $attributeMap = [
         'direccion' => 'direccion',
-        'colonia' => 'colonia',
-        'municipio' => 'municipio',
+        'colonia_poblacion' => 'coloniaPoblacion',
         'ciudad' => 'ciudad',
         'estado' => 'estado',
-        'codigo_postal' => 'codigoPostal',
+        'delegacion_municipio' => 'delegacionMunicipio',
+        'cp' => 'CP',
+        'id_domicilio' => 'idDomicilio',
+        'tipo_asentamiento' => 'tipoAsentamiento',
         'fecha_residencia' => 'fechaResidencia',
-        'numero_telefono' => 'numeroTelefono',
-        'tipo_domicilio' => 'tipoDomicilio',
-        'tipo_asentamiento' => 'tipoAsentamiento'
+        'fecha_registro_domicilio' => 'fechaRegistroDomicilio'
     ];
     
     protected static $setters = [
         'direccion' => 'setDireccion',
-        'colonia' => 'setColonia',
-        'municipio' => 'setMunicipio',
+        'colonia_poblacion' => 'setColoniaPoblacion',
         'ciudad' => 'setCiudad',
         'estado' => 'setEstado',
-        'codigo_postal' => 'setCodigoPostal',
+        'delegacion_municipio' => 'setDelegacionMunicipio',
+        'cp' => 'setCp',
+        'id_domicilio' => 'setIdDomicilio',
+        'tipo_asentamiento' => 'setTipoAsentamiento',
         'fecha_residencia' => 'setFechaResidencia',
-        'numero_telefono' => 'setNumeroTelefono',
-        'tipo_domicilio' => 'setTipoDomicilio',
-        'tipo_asentamiento' => 'setTipoAsentamiento'
+        'fecha_registro_domicilio' => 'setFechaRegistroDomicilio'
     ];
     
     protected static $getters = [
         'direccion' => 'getDireccion',
-        'colonia' => 'getColonia',
-        'municipio' => 'getMunicipio',
+        'colonia_poblacion' => 'getColoniaPoblacion',
         'ciudad' => 'getCiudad',
         'estado' => 'getEstado',
-        'codigo_postal' => 'getCodigoPostal',
+        'delegacion_municipio' => 'getDelegacionMunicipio',
+        'cp' => 'getCp',
+        'id_domicilio' => 'getIdDomicilio',
+        'tipo_asentamiento' => 'getTipoAsentamiento',
         'fecha_residencia' => 'getFechaResidencia',
-        'numero_telefono' => 'getNumeroTelefono',
-        'tipo_domicilio' => 'getTipoDomicilio',
-        'tipo_asentamiento' => 'getTipoAsentamiento'
+        'fecha_registro_domicilio' => 'getFechaRegistroDomicilio'
     ];
     
     public static function attributeMap()
@@ -113,15 +113,15 @@ class Domicilio implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['direccion'] = isset($data['direccion']) ? $data['direccion'] : null;
-        $this->container['colonia'] = isset($data['colonia']) ? $data['colonia'] : null;
-        $this->container['municipio'] = isset($data['municipio']) ? $data['municipio'] : null;
+        $this->container['colonia_poblacion'] = isset($data['colonia_poblacion']) ? $data['colonia_poblacion'] : null;
         $this->container['ciudad'] = isset($data['ciudad']) ? $data['ciudad'] : null;
         $this->container['estado'] = isset($data['estado']) ? $data['estado'] : null;
-        $this->container['codigo_postal'] = isset($data['codigo_postal']) ? $data['codigo_postal'] : null;
-        $this->container['fecha_residencia'] = isset($data['fecha_residencia']) ? $data['fecha_residencia'] : null;
-        $this->container['numero_telefono'] = isset($data['numero_telefono']) ? $data['numero_telefono'] : null;
-        $this->container['tipo_domicilio'] = isset($data['tipo_domicilio']) ? $data['tipo_domicilio'] : null;
+        $this->container['delegacion_municipio'] = isset($data['delegacion_municipio']) ? $data['delegacion_municipio'] : null;
+        $this->container['cp'] = isset($data['cp']) ? $data['cp'] : null;
+        $this->container['id_domicilio'] = isset($data['id_domicilio']) ? $data['id_domicilio'] : null;
         $this->container['tipo_asentamiento'] = isset($data['tipo_asentamiento']) ? $data['tipo_asentamiento'] : null;
+        $this->container['fecha_residencia'] = isset($data['fecha_residencia']) ? $data['fecha_residencia'] : null;
+        $this->container['fecha_registro_domicilio'] = isset($data['fecha_registro_domicilio']) ? $data['fecha_registro_domicilio'] : null;
     }
     
     public function listInvalidProperties()
@@ -136,23 +136,11 @@ class Domicilio implements ModelInterface, ArrayAccess
         if ((mb_strlen($this->container['direccion']) < 0)) {
             $invalidProperties[] = "invalid value for 'direccion', the character length must be bigger than or equal to 0.";
         }
-        if ($this->container['colonia'] === null) {
-            $invalidProperties[] = "'colonia' can't be null";
+        if (!is_null($this->container['colonia_poblacion']) && (mb_strlen($this->container['colonia_poblacion']) > 65)) {
+            $invalidProperties[] = "invalid value for 'colonia_poblacion', the character length must be smaller than or equal to 65.";
         }
-        if ((mb_strlen($this->container['colonia']) > 65)) {
-            $invalidProperties[] = "invalid value for 'colonia', the character length must be smaller than or equal to 65.";
-        }
-        if ((mb_strlen($this->container['colonia']) < 0)) {
-            $invalidProperties[] = "invalid value for 'colonia', the character length must be bigger than or equal to 0.";
-        }
-        if ($this->container['municipio'] === null) {
-            $invalidProperties[] = "'municipio' can't be null";
-        }
-        if ((mb_strlen($this->container['municipio']) > 65)) {
-            $invalidProperties[] = "invalid value for 'municipio', the character length must be smaller than or equal to 65.";
-        }
-        if ((mb_strlen($this->container['municipio']) < 0)) {
-            $invalidProperties[] = "invalid value for 'municipio', the character length must be bigger than or equal to 0.";
+        if (!is_null($this->container['colonia_poblacion']) && (mb_strlen($this->container['colonia_poblacion']) < 0)) {
+            $invalidProperties[] = "invalid value for 'colonia_poblacion', the character length must be bigger than or equal to 0.";
         }
         if ($this->container['ciudad'] === null) {
             $invalidProperties[] = "'ciudad' can't be null";
@@ -166,14 +154,17 @@ class Domicilio implements ModelInterface, ArrayAccess
         if ($this->container['estado'] === null) {
             $invalidProperties[] = "'estado' can't be null";
         }
-        if ($this->container['codigo_postal'] === null) {
-            $invalidProperties[] = "'codigo_postal' can't be null";
+        if (!is_null($this->container['delegacion_municipio']) && (mb_strlen($this->container['delegacion_municipio']) > 65)) {
+            $invalidProperties[] = "invalid value for 'delegacion_municipio', the character length must be smaller than or equal to 65.";
         }
-        if ((mb_strlen($this->container['codigo_postal']) > 5)) {
-            $invalidProperties[] = "invalid value for 'codigo_postal', the character length must be smaller than or equal to 5.";
+        if (!is_null($this->container['delegacion_municipio']) && (mb_strlen($this->container['delegacion_municipio']) < 0)) {
+            $invalidProperties[] = "invalid value for 'delegacion_municipio', the character length must be bigger than or equal to 0.";
         }
-        if ((mb_strlen($this->container['codigo_postal']) < 5)) {
-            $invalidProperties[] = "invalid value for 'codigo_postal', the character length must be bigger than or equal to 5.";
+        if (!is_null($this->container['cp']) && (mb_strlen($this->container['cp']) > 5)) {
+            $invalidProperties[] = "invalid value for 'cp', the character length must be smaller than or equal to 5.";
+        }
+        if (!is_null($this->container['cp']) && (mb_strlen($this->container['cp']) < 5)) {
+            $invalidProperties[] = "invalid value for 'cp', the character length must be bigger than or equal to 5.";
         }
         return $invalidProperties;
     }
@@ -200,37 +191,20 @@ class Domicilio implements ModelInterface, ArrayAccess
         return $this;
     }
     
-    public function getColonia()
+    public function getColoniaPoblacion()
     {
-        return $this->container['colonia'];
+        return $this->container['colonia_poblacion'];
     }
     
-    public function setColonia($colonia)
+    public function setColoniaPoblacion($colonia_poblacion)
     {
-        if ((mb_strlen($colonia) > 65)) {
-            throw new \InvalidArgumentException('invalid length for $colonia when calling Domicilio., must be smaller than or equal to 65.');
+        if (!is_null($colonia_poblacion) && (mb_strlen($colonia_poblacion) > 65)) {
+            throw new \InvalidArgumentException('invalid length for $colonia_poblacion when calling Domicilio., must be smaller than or equal to 65.');
         }
-        if ((mb_strlen($colonia) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $colonia when calling Domicilio., must be bigger than or equal to 0.');
+        if (!is_null($colonia_poblacion) && (mb_strlen($colonia_poblacion) < 0)) {
+            throw new \InvalidArgumentException('invalid length for $colonia_poblacion when calling Domicilio., must be bigger than or equal to 0.');
         }
-        $this->container['colonia'] = $colonia;
-        return $this;
-    }
-    
-    public function getMunicipio()
-    {
-        return $this->container['municipio'];
-    }
-    
-    public function setMunicipio($municipio)
-    {
-        if ((mb_strlen($municipio) > 65)) {
-            throw new \InvalidArgumentException('invalid length for $municipio when calling Domicilio., must be smaller than or equal to 65.');
-        }
-        if ((mb_strlen($municipio) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $municipio when calling Domicilio., must be bigger than or equal to 0.');
-        }
-        $this->container['municipio'] = $municipio;
+        $this->container['colonia_poblacion'] = $colonia_poblacion;
         return $this;
     }
     
@@ -262,20 +236,59 @@ class Domicilio implements ModelInterface, ArrayAccess
         return $this;
     }
     
-    public function getCodigoPostal()
+    public function getDelegacionMunicipio()
     {
-        return $this->container['codigo_postal'];
+        return $this->container['delegacion_municipio'];
     }
     
-    public function setCodigoPostal($codigo_postal)
+    public function setDelegacionMunicipio($delegacion_municipio)
     {
-        if ((mb_strlen($codigo_postal) > 5)) {
-            throw new \InvalidArgumentException('invalid length for $codigo_postal when calling Domicilio., must be smaller than or equal to 5.');
+        if (!is_null($delegacion_municipio) && (mb_strlen($delegacion_municipio) > 65)) {
+            throw new \InvalidArgumentException('invalid length for $delegacion_municipio when calling Domicilio., must be smaller than or equal to 65.');
         }
-        if ((mb_strlen($codigo_postal) < 5)) {
-            throw new \InvalidArgumentException('invalid length for $codigo_postal when calling Domicilio., must be bigger than or equal to 5.');
+        if (!is_null($delegacion_municipio) && (mb_strlen($delegacion_municipio) < 0)) {
+            throw new \InvalidArgumentException('invalid length for $delegacion_municipio when calling Domicilio., must be bigger than or equal to 0.');
         }
-        $this->container['codigo_postal'] = $codigo_postal;
+        $this->container['delegacion_municipio'] = $delegacion_municipio;
+        return $this;
+    }
+    
+    public function getCp()
+    {
+        return $this->container['cp'];
+    }
+    
+    public function setCp($cp)
+    {
+        if (!is_null($cp) && (mb_strlen($cp) > 5)) {
+            throw new \InvalidArgumentException('invalid length for $cp when calling Domicilio., must be smaller than or equal to 5.');
+        }
+        if (!is_null($cp) && (mb_strlen($cp) < 5)) {
+            throw new \InvalidArgumentException('invalid length for $cp when calling Domicilio., must be bigger than or equal to 5.');
+        }
+        $this->container['cp'] = $cp;
+        return $this;
+    }
+    
+    public function getIdDomicilio()
+    {
+        return $this->container['id_domicilio'];
+    }
+    
+    public function setIdDomicilio($id_domicilio)
+    {
+        $this->container['id_domicilio'] = $id_domicilio;
+        return $this;
+    }
+    
+    public function getTipoAsentamiento()
+    {
+        return $this->container['tipo_asentamiento'];
+    }
+    
+    public function setTipoAsentamiento($tipo_asentamiento)
+    {
+        $this->container['tipo_asentamiento'] = $tipo_asentamiento;
         return $this;
     }
     
@@ -290,36 +303,14 @@ class Domicilio implements ModelInterface, ArrayAccess
         return $this;
     }
     
-    public function getNumeroTelefono()
+    public function getFechaRegistroDomicilio()
     {
-        return $this->container['numero_telefono'];
+        return $this->container['fecha_registro_domicilio'];
     }
     
-    public function setNumeroTelefono($numero_telefono)
+    public function setFechaRegistroDomicilio($fecha_registro_domicilio)
     {
-        $this->container['numero_telefono'] = $numero_telefono;
-        return $this;
-    }
-    
-    public function getTipoDomicilio()
-    {
-        return $this->container['tipo_domicilio'];
-    }
-    
-    public function setTipoDomicilio($tipo_domicilio)
-    {
-        $this->container['tipo_domicilio'] = $tipo_domicilio;
-        return $this;
-    }
-    
-    public function getTipoAsentamiento()
-    {
-        return $this->container['tipo_asentamiento'];
-    }
-    
-    public function setTipoAsentamiento($tipo_asentamiento)
-    {
-        $this->container['tipo_asentamiento'] = $tipo_asentamiento;
+        $this->container['fecha_registro_domicilio'] = $fecha_registro_domicilio;
         return $this;
     }
     

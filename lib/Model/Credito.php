@@ -13,18 +13,17 @@ class Credito implements ModelInterface, ArrayAccess
     
     protected static $apihubTypes = [
         'fecha_actualizacion' => 'string',
-        'registro_impugnado' => 'string',
-        'clave_otorgante' => 'string',
-        'nombre_otorgante' => 'string',
+        'registro_impugnado' => 'int',
         'cuenta_actual' => 'string',
-        'tipo_responsabilidad' => '\RccLightSimulacion\Client\Model\CatalogoTipoResponsabilidad',
+        'nombre_otorgante' => 'string',
         'tipo_cuenta' => '\RccLightSimulacion\Client\Model\CatalogoTipoCuenta',
+        'tipo_responsabilidad' => '\RccLightSimulacion\Client\Model\CatalogoTipoResponsabilidad',
         'tipo_credito' => '\RccLightSimulacion\Client\Model\CatalogoTipoCredito',
         'clave_unidad_monetaria' => '\RccLightSimulacion\Client\Model\CatalogoMoneda',
-        'valor_activo_valuacion' => 'string',
-        'numero_pagos' => 'string',
+        'valor_activo_valuacion' => 'int',
+        'numero_pagos' => 'int',
         'frecuencia_pagos' => '\RccLightSimulacion\Client\Model\CatalogoFrecuenciaPago',
-        'monto_pagar' => 'string',
+        'monto_pagar' => 'float',
         'fecha_apertura_cuenta' => 'string',
         'fecha_ultimo_pago' => 'string',
         'fecha_ultima_compra' => 'string',
@@ -32,39 +31,34 @@ class Credito implements ModelInterface, ArrayAccess
         'fecha_reporte' => 'string',
         'ultima_fecha_saldo_cero' => 'string',
         'garantia' => 'string',
-        'credito_maximo' => 'string',
-        'saldo_actual' => 'string',
-        'limite_credito' => 'string',
-        'saldo_vencido' => 'string',
-        'numero_pagos_vencidos' => 'string',
+        'credito_maximo' => 'float',
+        'saldo_actual' => 'float',
+        'limite_credito' => 'float',
+        'saldo_vencido' => 'float',
+        'numero_pagos_vencidos' => 'int',
         'pago_actual' => 'string',
         'historico_pagos' => 'string',
         'fecha_reciente_historico_pagos' => 'string',
-        'fecha_antigua_historico_pagos' => 'string',
         'clave_prevencion' => '\RccLightSimulacion\Client\Model\CatalogoPrevencion',
-        'total_pagos_reportados' => 'string',
-        'peor_atraso' => 'string',
+        'peor_atraso' => 'float',
         'fecha_peor_atraso' => 'string',
-        'saldo_vencido_peor_atraso' => 'string',
         'monto_ultimo_pago' => 'double',
-        'id_domicilio' => 'string',
-        'servicios' => 'string'
+        'total_pagos_reportados' => 'int'
     ];
     
     protected static $apihubFormats = [
         'fecha_actualizacion' => 'yyyy-MM-dd',
-        'registro_impugnado' => null,
-        'clave_otorgante' => null,
-        'nombre_otorgante' => null,
+        'registro_impugnado' => 'int32',
         'cuenta_actual' => null,
-        'tipo_responsabilidad' => null,
+        'nombre_otorgante' => null,
         'tipo_cuenta' => null,
+        'tipo_responsabilidad' => null,
         'tipo_credito' => null,
         'clave_unidad_monetaria' => null,
-        'valor_activo_valuacion' => null,
-        'numero_pagos' => null,
+        'valor_activo_valuacion' => 'int32',
+        'numero_pagos' => 'int32',
         'frecuencia_pagos' => null,
-        'monto_pagar' => null,
+        'monto_pagar' => 'float',
         'fecha_apertura_cuenta' => 'yyyy-MM-dd',
         'fecha_ultimo_pago' => 'yyyy-MM-dd',
         'fecha_ultima_compra' => 'yyyy-MM-dd',
@@ -72,23 +66,19 @@ class Credito implements ModelInterface, ArrayAccess
         'fecha_reporte' => 'yyyy-MM-dd',
         'ultima_fecha_saldo_cero' => 'yyyy-MM-dd',
         'garantia' => null,
-        'credito_maximo' => null,
-        'saldo_actual' => null,
-        'limite_credito' => null,
-        'saldo_vencido' => null,
-        'numero_pagos_vencidos' => null,
+        'credito_maximo' => 'float',
+        'saldo_actual' => 'float',
+        'limite_credito' => 'float',
+        'saldo_vencido' => 'float',
+        'numero_pagos_vencidos' => 'int32',
         'pago_actual' => null,
         'historico_pagos' => null,
         'fecha_reciente_historico_pagos' => 'yyyy-MM-dd',
-        'fecha_antigua_historico_pagos' => 'yyyy-MM-dd',
         'clave_prevencion' => null,
-        'total_pagos_reportados' => null,
-        'peor_atraso' => null,
+        'peor_atraso' => 'float',
         'fecha_peor_atraso' => 'yyyy-MM-dd',
-        'saldo_vencido_peor_atraso' => null,
         'monto_ultimo_pago' => 'double',
-        'id_domicilio' => null,
-        'servicios' => null
+        'total_pagos_reportados' => 'int32'
     ];
     
     public static function apihubTypes()
@@ -104,11 +94,10 @@ class Credito implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'fecha_actualizacion' => 'fechaActualizacion',
         'registro_impugnado' => 'registroImpugnado',
-        'clave_otorgante' => 'claveOtorgante',
-        'nombre_otorgante' => 'nombreOtorgante',
         'cuenta_actual' => 'cuentaActual',
-        'tipo_responsabilidad' => 'tipoResponsabilidad',
+        'nombre_otorgante' => 'nombreOtorgante',
         'tipo_cuenta' => 'tipoCuenta',
+        'tipo_responsabilidad' => 'tipoResponsabilidad',
         'tipo_credito' => 'tipoCredito',
         'clave_unidad_monetaria' => 'claveUnidadMonetaria',
         'valor_activo_valuacion' => 'valorActivoValuacion',
@@ -130,25 +119,20 @@ class Credito implements ModelInterface, ArrayAccess
         'pago_actual' => 'pagoActual',
         'historico_pagos' => 'historicoPagos',
         'fecha_reciente_historico_pagos' => 'fechaRecienteHistoricoPagos',
-        'fecha_antigua_historico_pagos' => 'fechaAntiguaHistoricoPagos',
         'clave_prevencion' => 'clavePrevencion',
-        'total_pagos_reportados' => 'totalPagosReportados',
         'peor_atraso' => 'peorAtraso',
         'fecha_peor_atraso' => 'fechaPeorAtraso',
-        'saldo_vencido_peor_atraso' => 'saldoVencidoPeorAtraso',
         'monto_ultimo_pago' => 'montoUltimoPago',
-        'id_domicilio' => 'idDomicilio',
-        'servicios' => 'servicios'
+        'total_pagos_reportados' => 'totalPagosReportados'
     ];
     
     protected static $setters = [
         'fecha_actualizacion' => 'setFechaActualizacion',
         'registro_impugnado' => 'setRegistroImpugnado',
-        'clave_otorgante' => 'setClaveOtorgante',
-        'nombre_otorgante' => 'setNombreOtorgante',
         'cuenta_actual' => 'setCuentaActual',
-        'tipo_responsabilidad' => 'setTipoResponsabilidad',
+        'nombre_otorgante' => 'setNombreOtorgante',
         'tipo_cuenta' => 'setTipoCuenta',
+        'tipo_responsabilidad' => 'setTipoResponsabilidad',
         'tipo_credito' => 'setTipoCredito',
         'clave_unidad_monetaria' => 'setClaveUnidadMonetaria',
         'valor_activo_valuacion' => 'setValorActivoValuacion',
@@ -170,25 +154,20 @@ class Credito implements ModelInterface, ArrayAccess
         'pago_actual' => 'setPagoActual',
         'historico_pagos' => 'setHistoricoPagos',
         'fecha_reciente_historico_pagos' => 'setFechaRecienteHistoricoPagos',
-        'fecha_antigua_historico_pagos' => 'setFechaAntiguaHistoricoPagos',
         'clave_prevencion' => 'setClavePrevencion',
-        'total_pagos_reportados' => 'setTotalPagosReportados',
         'peor_atraso' => 'setPeorAtraso',
         'fecha_peor_atraso' => 'setFechaPeorAtraso',
-        'saldo_vencido_peor_atraso' => 'setSaldoVencidoPeorAtraso',
         'monto_ultimo_pago' => 'setMontoUltimoPago',
-        'id_domicilio' => 'setIdDomicilio',
-        'servicios' => 'setServicios'
+        'total_pagos_reportados' => 'setTotalPagosReportados'
     ];
     
     protected static $getters = [
         'fecha_actualizacion' => 'getFechaActualizacion',
         'registro_impugnado' => 'getRegistroImpugnado',
-        'clave_otorgante' => 'getClaveOtorgante',
-        'nombre_otorgante' => 'getNombreOtorgante',
         'cuenta_actual' => 'getCuentaActual',
-        'tipo_responsabilidad' => 'getTipoResponsabilidad',
+        'nombre_otorgante' => 'getNombreOtorgante',
         'tipo_cuenta' => 'getTipoCuenta',
+        'tipo_responsabilidad' => 'getTipoResponsabilidad',
         'tipo_credito' => 'getTipoCredito',
         'clave_unidad_monetaria' => 'getClaveUnidadMonetaria',
         'valor_activo_valuacion' => 'getValorActivoValuacion',
@@ -210,15 +189,11 @@ class Credito implements ModelInterface, ArrayAccess
         'pago_actual' => 'getPagoActual',
         'historico_pagos' => 'getHistoricoPagos',
         'fecha_reciente_historico_pagos' => 'getFechaRecienteHistoricoPagos',
-        'fecha_antigua_historico_pagos' => 'getFechaAntiguaHistoricoPagos',
         'clave_prevencion' => 'getClavePrevencion',
-        'total_pagos_reportados' => 'getTotalPagosReportados',
         'peor_atraso' => 'getPeorAtraso',
         'fecha_peor_atraso' => 'getFechaPeorAtraso',
-        'saldo_vencido_peor_atraso' => 'getSaldoVencidoPeorAtraso',
         'monto_ultimo_pago' => 'getMontoUltimoPago',
-        'id_domicilio' => 'getIdDomicilio',
-        'servicios' => 'getServicios'
+        'total_pagos_reportados' => 'getTotalPagosReportados'
     ];
     
     public static function attributeMap()
@@ -249,11 +224,10 @@ class Credito implements ModelInterface, ArrayAccess
     {
         $this->container['fecha_actualizacion'] = isset($data['fecha_actualizacion']) ? $data['fecha_actualizacion'] : null;
         $this->container['registro_impugnado'] = isset($data['registro_impugnado']) ? $data['registro_impugnado'] : null;
-        $this->container['clave_otorgante'] = isset($data['clave_otorgante']) ? $data['clave_otorgante'] : null;
-        $this->container['nombre_otorgante'] = isset($data['nombre_otorgante']) ? $data['nombre_otorgante'] : null;
         $this->container['cuenta_actual'] = isset($data['cuenta_actual']) ? $data['cuenta_actual'] : null;
-        $this->container['tipo_responsabilidad'] = isset($data['tipo_responsabilidad']) ? $data['tipo_responsabilidad'] : null;
+        $this->container['nombre_otorgante'] = isset($data['nombre_otorgante']) ? $data['nombre_otorgante'] : null;
         $this->container['tipo_cuenta'] = isset($data['tipo_cuenta']) ? $data['tipo_cuenta'] : null;
+        $this->container['tipo_responsabilidad'] = isset($data['tipo_responsabilidad']) ? $data['tipo_responsabilidad'] : null;
         $this->container['tipo_credito'] = isset($data['tipo_credito']) ? $data['tipo_credito'] : null;
         $this->container['clave_unidad_monetaria'] = isset($data['clave_unidad_monetaria']) ? $data['clave_unidad_monetaria'] : null;
         $this->container['valor_activo_valuacion'] = isset($data['valor_activo_valuacion']) ? $data['valor_activo_valuacion'] : null;
@@ -275,32 +249,16 @@ class Credito implements ModelInterface, ArrayAccess
         $this->container['pago_actual'] = isset($data['pago_actual']) ? $data['pago_actual'] : null;
         $this->container['historico_pagos'] = isset($data['historico_pagos']) ? $data['historico_pagos'] : null;
         $this->container['fecha_reciente_historico_pagos'] = isset($data['fecha_reciente_historico_pagos']) ? $data['fecha_reciente_historico_pagos'] : null;
-        $this->container['fecha_antigua_historico_pagos'] = isset($data['fecha_antigua_historico_pagos']) ? $data['fecha_antigua_historico_pagos'] : null;
         $this->container['clave_prevencion'] = isset($data['clave_prevencion']) ? $data['clave_prevencion'] : null;
-        $this->container['total_pagos_reportados'] = isset($data['total_pagos_reportados']) ? $data['total_pagos_reportados'] : null;
         $this->container['peor_atraso'] = isset($data['peor_atraso']) ? $data['peor_atraso'] : null;
         $this->container['fecha_peor_atraso'] = isset($data['fecha_peor_atraso']) ? $data['fecha_peor_atraso'] : null;
-        $this->container['saldo_vencido_peor_atraso'] = isset($data['saldo_vencido_peor_atraso']) ? $data['saldo_vencido_peor_atraso'] : null;
         $this->container['monto_ultimo_pago'] = isset($data['monto_ultimo_pago']) ? $data['monto_ultimo_pago'] : null;
-        $this->container['id_domicilio'] = isset($data['id_domicilio']) ? $data['id_domicilio'] : null;
-        $this->container['servicios'] = isset($data['servicios']) ? $data['servicios'] : null;
+        $this->container['total_pagos_reportados'] = isset($data['total_pagos_reportados']) ? $data['total_pagos_reportados'] : null;
     }
     
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-        if (!is_null($this->container['id_domicilio']) && (mb_strlen($this->container['id_domicilio']) > 20)) {
-            $invalidProperties[] = "invalid value for 'id_domicilio', the character length must be smaller than or equal to 20.";
-        }
-        if (!is_null($this->container['id_domicilio']) && (mb_strlen($this->container['id_domicilio']) < 0)) {
-            $invalidProperties[] = "invalid value for 'id_domicilio', the character length must be bigger than or equal to 0.";
-        }
-        if (!is_null($this->container['servicios']) && (mb_strlen($this->container['servicios']) > 1)) {
-            $invalidProperties[] = "invalid value for 'servicios', the character length must be smaller than or equal to 1.";
-        }
-        if (!is_null($this->container['servicios']) && (mb_strlen($this->container['servicios']) < 0)) {
-            $invalidProperties[] = "invalid value for 'servicios', the character length must be bigger than or equal to 0.";
-        }
         return $invalidProperties;
     }
     
@@ -331,14 +289,14 @@ class Credito implements ModelInterface, ArrayAccess
         return $this;
     }
     
-    public function getClaveOtorgante()
+    public function getCuentaActual()
     {
-        return $this->container['clave_otorgante'];
+        return $this->container['cuenta_actual'];
     }
     
-    public function setClaveOtorgante($clave_otorgante)
+    public function setCuentaActual($cuenta_actual)
     {
-        $this->container['clave_otorgante'] = $clave_otorgante;
+        $this->container['cuenta_actual'] = $cuenta_actual;
         return $this;
     }
     
@@ -353,14 +311,14 @@ class Credito implements ModelInterface, ArrayAccess
         return $this;
     }
     
-    public function getCuentaActual()
+    public function getTipoCuenta()
     {
-        return $this->container['cuenta_actual'];
+        return $this->container['tipo_cuenta'];
     }
     
-    public function setCuentaActual($cuenta_actual)
+    public function setTipoCuenta($tipo_cuenta)
     {
-        $this->container['cuenta_actual'] = $cuenta_actual;
+        $this->container['tipo_cuenta'] = $tipo_cuenta;
         return $this;
     }
     
@@ -372,17 +330,6 @@ class Credito implements ModelInterface, ArrayAccess
     public function setTipoResponsabilidad($tipo_responsabilidad)
     {
         $this->container['tipo_responsabilidad'] = $tipo_responsabilidad;
-        return $this;
-    }
-    
-    public function getTipoCuenta()
-    {
-        return $this->container['tipo_cuenta'];
-    }
-    
-    public function setTipoCuenta($tipo_cuenta)
-    {
-        $this->container['tipo_cuenta'] = $tipo_cuenta;
         return $this;
     }
     
@@ -617,17 +564,6 @@ class Credito implements ModelInterface, ArrayAccess
         return $this;
     }
     
-    public function getFechaAntiguaHistoricoPagos()
-    {
-        return $this->container['fecha_antigua_historico_pagos'];
-    }
-    
-    public function setFechaAntiguaHistoricoPagos($fecha_antigua_historico_pagos)
-    {
-        $this->container['fecha_antigua_historico_pagos'] = $fecha_antigua_historico_pagos;
-        return $this;
-    }
-    
     public function getClavePrevencion()
     {
         return $this->container['clave_prevencion'];
@@ -636,17 +572,6 @@ class Credito implements ModelInterface, ArrayAccess
     public function setClavePrevencion($clave_prevencion)
     {
         $this->container['clave_prevencion'] = $clave_prevencion;
-        return $this;
-    }
-    
-    public function getTotalPagosReportados()
-    {
-        return $this->container['total_pagos_reportados'];
-    }
-    
-    public function setTotalPagosReportados($total_pagos_reportados)
-    {
-        $this->container['total_pagos_reportados'] = $total_pagos_reportados;
         return $this;
     }
     
@@ -672,17 +597,6 @@ class Credito implements ModelInterface, ArrayAccess
         return $this;
     }
     
-    public function getSaldoVencidoPeorAtraso()
-    {
-        return $this->container['saldo_vencido_peor_atraso'];
-    }
-    
-    public function setSaldoVencidoPeorAtraso($saldo_vencido_peor_atraso)
-    {
-        $this->container['saldo_vencido_peor_atraso'] = $saldo_vencido_peor_atraso;
-        return $this;
-    }
-    
     public function getMontoUltimoPago()
     {
         return $this->container['monto_ultimo_pago'];
@@ -694,38 +608,14 @@ class Credito implements ModelInterface, ArrayAccess
         return $this;
     }
     
-    public function getIdDomicilio()
+    public function getTotalPagosReportados()
     {
-        return $this->container['id_domicilio'];
+        return $this->container['total_pagos_reportados'];
     }
     
-    public function setIdDomicilio($id_domicilio)
+    public function setTotalPagosReportados($total_pagos_reportados)
     {
-        if (!is_null($id_domicilio) && (mb_strlen($id_domicilio) > 20)) {
-            throw new \InvalidArgumentException('invalid length for $id_domicilio when calling Credito., must be smaller than or equal to 20.');
-        }
-        if (!is_null($id_domicilio) && (mb_strlen($id_domicilio) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $id_domicilio when calling Credito., must be bigger than or equal to 0.');
-        }
-        $this->container['id_domicilio'] = $id_domicilio;
-        return $this;
-    }
-    
-    public function getServicios()
-    {
-        return $this->container['servicios'];
-    }
-    
-    public function setServicios($servicios)
-    {
-        if (!is_null($servicios) && (mb_strlen($servicios) > 1)) {
-            var_dump($servicios);
-            throw new \InvalidArgumentException('invalid length for $servicios when calling Credito., must be smaller than or equal to 1.');
-        }
-        if (!is_null($servicios) && (mb_strlen($servicios) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $servicios when calling Credito., must be bigger than or equal to 0.');
-        }
-        $this->container['servicios'] = $servicios;
+        $this->container['total_pagos_reportados'] = $total_pagos_reportados;
         return $this;
     }
     

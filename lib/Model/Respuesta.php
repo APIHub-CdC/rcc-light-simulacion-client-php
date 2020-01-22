@@ -13,6 +13,8 @@ class Respuesta implements ModelInterface, ArrayAccess
     
     protected static $apihubTypes = [
         'folio_consulta' => 'string',
+        'folio_consulta_otorgante' => 'string',
+        'clave_otorgante' => 'string',
         'persona' => '\RccLightSimulacion\Client\Model\PersonaRespuesta',
         'consultas' => '\RccLightSimulacion\Client\Model\Consulta[]',
         'creditos' => '\RccLightSimulacion\Client\Model\Credito[]',
@@ -24,6 +26,8 @@ class Respuesta implements ModelInterface, ArrayAccess
     
     protected static $apihubFormats = [
         'folio_consulta' => null,
+        'folio_consulta_otorgante' => null,
+        'clave_otorgante' => null,
         'persona' => null,
         'consultas' => null,
         'creditos' => null,
@@ -45,6 +49,8 @@ class Respuesta implements ModelInterface, ArrayAccess
     
     protected static $attributeMap = [
         'folio_consulta' => 'folioConsulta',
+        'folio_consulta_otorgante' => 'folioConsultaOtorgante',
+        'clave_otorgante' => 'claveOtorgante',
         'persona' => 'persona',
         'consultas' => 'consultas',
         'creditos' => 'creditos',
@@ -56,6 +62,8 @@ class Respuesta implements ModelInterface, ArrayAccess
     
     protected static $setters = [
         'folio_consulta' => 'setFolioConsulta',
+        'folio_consulta_otorgante' => 'setFolioConsultaOtorgante',
+        'clave_otorgante' => 'setClaveOtorgante',
         'persona' => 'setPersona',
         'consultas' => 'setConsultas',
         'creditos' => 'setCreditos',
@@ -67,6 +75,8 @@ class Respuesta implements ModelInterface, ArrayAccess
     
     protected static $getters = [
         'folio_consulta' => 'getFolioConsulta',
+        'folio_consulta_otorgante' => 'getFolioConsultaOtorgante',
+        'clave_otorgante' => 'getClaveOtorgante',
         'persona' => 'getPersona',
         'consultas' => 'getConsultas',
         'creditos' => 'getCreditos',
@@ -103,6 +113,8 @@ class Respuesta implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['folio_consulta'] = isset($data['folio_consulta']) ? $data['folio_consulta'] : null;
+        $this->container['folio_consulta_otorgante'] = isset($data['folio_consulta_otorgante']) ? $data['folio_consulta_otorgante'] : null;
+        $this->container['clave_otorgante'] = isset($data['clave_otorgante']) ? $data['clave_otorgante'] : null;
         $this->container['persona'] = isset($data['persona']) ? $data['persona'] : null;
         $this->container['consultas'] = isset($data['consultas']) ? $data['consultas'] : null;
         $this->container['creditos'] = isset($data['creditos']) ? $data['creditos'] : null;
@@ -131,6 +143,28 @@ class Respuesta implements ModelInterface, ArrayAccess
     public function setFolioConsulta($folio_consulta)
     {
         $this->container['folio_consulta'] = $folio_consulta;
+        return $this;
+    }
+    
+    public function getFolioConsultaOtorgante()
+    {
+        return $this->container['folio_consulta_otorgante'];
+    }
+    
+    public function setFolioConsultaOtorgante($folio_consulta_otorgante)
+    {
+        $this->container['folio_consulta_otorgante'] = $folio_consulta_otorgante;
+        return $this;
+    }
+    
+    public function getClaveOtorgante()
+    {
+        return $this->container['clave_otorgante'];
+    }
+    
+    public function setClaveOtorgante($clave_otorgante)
+    {
+        $this->container['clave_otorgante'] = $clave_otorgante;
         return $this;
     }
     

@@ -13,7 +13,7 @@ class ReporteDeCreditoConsolidadoLightFICOScorePLDApiTest extends \PHPUnit_Frame
     {
         $config = new \RccLightSimulacion\Client\Configuration();
         $config->setHost('the_url');
-        $client = new \GuzzleHttp\Client(['verify' => false]);
+        $client = new \GuzzleHttp\Client();
         $this->apiInstance = new \RccLightSimulacion\Client\Api\ReporteDeCreditoConsolidadoLightFICOScorePLDApi($client, $config);
         $this->x_api_key = "your_api_key";
     }
@@ -44,12 +44,12 @@ class ReporteDeCreditoConsolidadoLightFICOScorePLDApiTest extends \PHPUnit_Frame
         $x_full_report = false;
         $request = new \RccLightSimulacion\Client\Model\PersonaPeticion();
         
-        $request->setPrimerNombre("ROBERTO");
+        $request->setPrimerNombre("xxxxx");
         $request->setSegundoNombre(null);
-        $request->setApellidoPaterno("SAHAGUN");
-        $request->setApellidoMaterno("ZARAGOZA");
+        $request->setApellidoPaterno("xxxxx");
+        $request->setApellidoMaterno("xxxxx");
         $request->setApellidoAdicional(null);
-        $request->setFechaNacimiento("2001-01-01");
+        $request->setFechaNacimiento("yyyy-MM-dd");
 
         try {
             $result = $this->apiInstance->getReporte($this->x_api_key, $request, $x_full_report);

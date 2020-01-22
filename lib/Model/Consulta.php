@@ -13,30 +13,18 @@ class Consulta implements ModelInterface, ArrayAccess
     
     protected static $apihubTypes = [
         'fecha_consulta' => 'string',
-        'clave_otorgante' => 'string',
         'nombre_otorgante' => 'string',
-        'direccion_otorgante' => 'string',
-        'telefono_otorgante' => 'string',
         'tipo_credito' => 'string',
-        'importe_credito' => 'string',
-        'tipo_responsabilidad' => '\RccLightSimulacion\Client\Model\CatalogoTipoResponsabilidad',
-        'clave_unidad_monetaria' => '\RccLightSimulacion\Client\Model\CatalogoMoneda',
-        'id_domicilio' => 'string',
-        'servicios' => 'string'
+        'importe_credito' => 'float',
+        'clave_unidad_monetaria' => '\RccLightSimulacion\Client\Model\CatalogoMoneda'
     ];
     
     protected static $apihubFormats = [
         'fecha_consulta' => null,
-        'clave_otorgante' => null,
         'nombre_otorgante' => null,
-        'direccion_otorgante' => null,
-        'telefono_otorgante' => null,
         'tipo_credito' => null,
-        'importe_credito' => null,
-        'tipo_responsabilidad' => null,
-        'clave_unidad_monetaria' => null,
-        'id_domicilio' => null,
-        'servicios' => null
+        'importe_credito' => 'float',
+        'clave_unidad_monetaria' => null
     ];
     
     public static function apihubTypes()
@@ -51,44 +39,26 @@ class Consulta implements ModelInterface, ArrayAccess
     
     protected static $attributeMap = [
         'fecha_consulta' => 'fechaConsulta',
-        'clave_otorgante' => 'claveOtorgante',
         'nombre_otorgante' => 'nombreOtorgante',
-        'direccion_otorgante' => 'direccionOtorgante',
-        'telefono_otorgante' => 'telefonoOtorgante',
         'tipo_credito' => 'tipoCredito',
         'importe_credito' => 'importeCredito',
-        'tipo_responsabilidad' => 'tipoResponsabilidad',
-        'clave_unidad_monetaria' => 'claveUnidadMonetaria',
-        'id_domicilio' => 'idDomicilio',
-        'servicios' => 'servicios'
+        'clave_unidad_monetaria' => 'claveUnidadMonetaria'
     ];
     
     protected static $setters = [
         'fecha_consulta' => 'setFechaConsulta',
-        'clave_otorgante' => 'setClaveOtorgante',
         'nombre_otorgante' => 'setNombreOtorgante',
-        'direccion_otorgante' => 'setDireccionOtorgante',
-        'telefono_otorgante' => 'setTelefonoOtorgante',
         'tipo_credito' => 'setTipoCredito',
         'importe_credito' => 'setImporteCredito',
-        'tipo_responsabilidad' => 'setTipoResponsabilidad',
-        'clave_unidad_monetaria' => 'setClaveUnidadMonetaria',
-        'id_domicilio' => 'setIdDomicilio',
-        'servicios' => 'setServicios'
+        'clave_unidad_monetaria' => 'setClaveUnidadMonetaria'
     ];
     
     protected static $getters = [
         'fecha_consulta' => 'getFechaConsulta',
-        'clave_otorgante' => 'getClaveOtorgante',
         'nombre_otorgante' => 'getNombreOtorgante',
-        'direccion_otorgante' => 'getDireccionOtorgante',
-        'telefono_otorgante' => 'getTelefonoOtorgante',
         'tipo_credito' => 'getTipoCredito',
         'importe_credito' => 'getImporteCredito',
-        'tipo_responsabilidad' => 'getTipoResponsabilidad',
-        'clave_unidad_monetaria' => 'getClaveUnidadMonetaria',
-        'id_domicilio' => 'getIdDomicilio',
-        'servicios' => 'getServicios'
+        'clave_unidad_monetaria' => 'getClaveUnidadMonetaria'
     ];
     
     public static function attributeMap()
@@ -118,27 +88,15 @@ class Consulta implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['fecha_consulta'] = isset($data['fecha_consulta']) ? $data['fecha_consulta'] : null;
-        $this->container['clave_otorgante'] = isset($data['clave_otorgante']) ? $data['clave_otorgante'] : null;
         $this->container['nombre_otorgante'] = isset($data['nombre_otorgante']) ? $data['nombre_otorgante'] : null;
-        $this->container['direccion_otorgante'] = isset($data['direccion_otorgante']) ? $data['direccion_otorgante'] : null;
-        $this->container['telefono_otorgante'] = isset($data['telefono_otorgante']) ? $data['telefono_otorgante'] : null;
         $this->container['tipo_credito'] = isset($data['tipo_credito']) ? $data['tipo_credito'] : null;
         $this->container['importe_credito'] = isset($data['importe_credito']) ? $data['importe_credito'] : null;
-        $this->container['tipo_responsabilidad'] = isset($data['tipo_responsabilidad']) ? $data['tipo_responsabilidad'] : null;
         $this->container['clave_unidad_monetaria'] = isset($data['clave_unidad_monetaria']) ? $data['clave_unidad_monetaria'] : null;
-        $this->container['id_domicilio'] = isset($data['id_domicilio']) ? $data['id_domicilio'] : null;
-        $this->container['servicios'] = isset($data['servicios']) ? $data['servicios'] : null;
     }
     
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-        if (!is_null($this->container['id_domicilio']) && (mb_strlen($this->container['id_domicilio']) > 20)) {
-            $invalidProperties[] = "invalid value for 'id_domicilio', the character length must be smaller than or equal to 20.";
-        }
-        if (!is_null($this->container['id_domicilio']) && (mb_strlen($this->container['id_domicilio']) < 0)) {
-            $invalidProperties[] = "invalid value for 'id_domicilio', the character length must be bigger than or equal to 0.";
-        }
         return $invalidProperties;
     }
     
@@ -158,17 +116,6 @@ class Consulta implements ModelInterface, ArrayAccess
         return $this;
     }
     
-    public function getClaveOtorgante()
-    {
-        return $this->container['clave_otorgante'];
-    }
-    
-    public function setClaveOtorgante($clave_otorgante)
-    {
-        $this->container['clave_otorgante'] = $clave_otorgante;
-        return $this;
-    }
-    
     public function getNombreOtorgante()
     {
         return $this->container['nombre_otorgante'];
@@ -177,28 +124,6 @@ class Consulta implements ModelInterface, ArrayAccess
     public function setNombreOtorgante($nombre_otorgante)
     {
         $this->container['nombre_otorgante'] = $nombre_otorgante;
-        return $this;
-    }
-    
-    public function getDireccionOtorgante()
-    {
-        return $this->container['direccion_otorgante'];
-    }
-    
-    public function setDireccionOtorgante($direccion_otorgante)
-    {
-        $this->container['direccion_otorgante'] = $direccion_otorgante;
-        return $this;
-    }
-    
-    public function getTelefonoOtorgante()
-    {
-        return $this->container['telefono_otorgante'];
-    }
-    
-    public function setTelefonoOtorgante($telefono_otorgante)
-    {
-        $this->container['telefono_otorgante'] = $telefono_otorgante;
         return $this;
     }
     
@@ -224,17 +149,6 @@ class Consulta implements ModelInterface, ArrayAccess
         return $this;
     }
     
-    public function getTipoResponsabilidad()
-    {
-        return $this->container['tipo_responsabilidad'];
-    }
-    
-    public function setTipoResponsabilidad($tipo_responsabilidad)
-    {
-        $this->container['tipo_responsabilidad'] = $tipo_responsabilidad;
-        return $this;
-    }
-    
     public function getClaveUnidadMonetaria()
     {
         return $this->container['clave_unidad_monetaria'];
@@ -243,34 +157,6 @@ class Consulta implements ModelInterface, ArrayAccess
     public function setClaveUnidadMonetaria($clave_unidad_monetaria)
     {
         $this->container['clave_unidad_monetaria'] = $clave_unidad_monetaria;
-        return $this;
-    }
-    
-    public function getIdDomicilio()
-    {
-        return $this->container['id_domicilio'];
-    }
-    
-    public function setIdDomicilio($id_domicilio)
-    {
-        if (!is_null($id_domicilio) && (mb_strlen($id_domicilio) > 20)) {
-            throw new \InvalidArgumentException('invalid length for $id_domicilio when calling Consulta., must be smaller than or equal to 20.');
-        }
-        if (!is_null($id_domicilio) && (mb_strlen($id_domicilio) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $id_domicilio when calling Consulta., must be bigger than or equal to 0.');
-        }
-        $this->container['id_domicilio'] = $id_domicilio;
-        return $this;
-    }
-    
-    public function getServicios()
-    {
-        return $this->container['servicios'];
-    }
-    
-    public function setServicios($servicios)
-    {
-        $this->container['servicios'] = $servicios;
         return $this;
     }
     
