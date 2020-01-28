@@ -14,16 +14,18 @@ class Consulta implements ModelInterface, ArrayAccess
     protected static $apihubTypes = [
         'fecha_consulta' => 'string',
         'nombre_otorgante' => 'string',
-        'tipo_credito' => 'string',
+        'tipo_credito' => '\RccLightSimulacion\Client\Model\CatalogoTipoCredito',
         'importe_credito' => 'float',
+        'tipo_responsabilidad' => '\RccLightSimulacion\Client\Model\CatalogoTipoResponsabilidad',
         'clave_unidad_monetaria' => '\RccLightSimulacion\Client\Model\CatalogoMoneda'
     ];
     
     protected static $apihubFormats = [
-        'fecha_consulta' => null,
+        'fecha_consulta' => 'yyyy-MM-dd',
         'nombre_otorgante' => null,
         'tipo_credito' => null,
         'importe_credito' => 'float',
+        'tipo_responsabilidad' => null,
         'clave_unidad_monetaria' => null
     ];
     
@@ -42,6 +44,7 @@ class Consulta implements ModelInterface, ArrayAccess
         'nombre_otorgante' => 'nombreOtorgante',
         'tipo_credito' => 'tipoCredito',
         'importe_credito' => 'importeCredito',
+        'tipo_responsabilidad' => 'tipoResponsabilidad',
         'clave_unidad_monetaria' => 'claveUnidadMonetaria'
     ];
     
@@ -50,6 +53,7 @@ class Consulta implements ModelInterface, ArrayAccess
         'nombre_otorgante' => 'setNombreOtorgante',
         'tipo_credito' => 'setTipoCredito',
         'importe_credito' => 'setImporteCredito',
+        'tipo_responsabilidad' => 'setTipoResponsabilidad',
         'clave_unidad_monetaria' => 'setClaveUnidadMonetaria'
     ];
     
@@ -58,6 +62,7 @@ class Consulta implements ModelInterface, ArrayAccess
         'nombre_otorgante' => 'getNombreOtorgante',
         'tipo_credito' => 'getTipoCredito',
         'importe_credito' => 'getImporteCredito',
+        'tipo_responsabilidad' => 'getTipoResponsabilidad',
         'clave_unidad_monetaria' => 'getClaveUnidadMonetaria'
     ];
     
@@ -91,6 +96,7 @@ class Consulta implements ModelInterface, ArrayAccess
         $this->container['nombre_otorgante'] = isset($data['nombre_otorgante']) ? $data['nombre_otorgante'] : null;
         $this->container['tipo_credito'] = isset($data['tipo_credito']) ? $data['tipo_credito'] : null;
         $this->container['importe_credito'] = isset($data['importe_credito']) ? $data['importe_credito'] : null;
+        $this->container['tipo_responsabilidad'] = isset($data['tipo_responsabilidad']) ? $data['tipo_responsabilidad'] : null;
         $this->container['clave_unidad_monetaria'] = isset($data['clave_unidad_monetaria']) ? $data['clave_unidad_monetaria'] : null;
     }
     
@@ -146,6 +152,17 @@ class Consulta implements ModelInterface, ArrayAccess
     public function setImporteCredito($importe_credito)
     {
         $this->container['importe_credito'] = $importe_credito;
+        return $this;
+    }
+    
+    public function getTipoResponsabilidad()
+    {
+        return $this->container['tipo_responsabilidad'];
+    }
+    
+    public function setTipoResponsabilidad($tipo_responsabilidad)
+    {
+        $this->container['tipo_responsabilidad'] = $tipo_responsabilidad;
         return $this;
     }
     

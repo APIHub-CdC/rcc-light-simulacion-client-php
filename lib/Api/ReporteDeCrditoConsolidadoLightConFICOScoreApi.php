@@ -13,7 +13,7 @@ use RccLightSimulacion\Client\Configuration;
 use RccLightSimulacion\Client\HeaderSelector;
 use RccLightSimulacion\Client\ObjectSerializer;
 
-class ReporteDeCreditoConsolidadoLightFICOScorePLDApi
+class ReporteDeCrditoConsolidadoLightConFICOScoreApi
 {
     
     protected $client;
@@ -1053,16 +1053,16 @@ class ReporteDeCreditoConsolidadoLightFICOScorePLDApi
         );
     }
     
-    public function getPLD($folio_consulta, $x_api_key)
+    public function getMensajes($folio_consulta, $x_api_key)
     {
-        list($response) = $this->getPLDWithHttpInfo($folio_consulta, $x_api_key);
+        list($response) = $this->getMensajesWithHttpInfo($folio_consulta, $x_api_key);
         return $response;
     }
     
-    public function getPLDWithHttpInfo($folio_consulta, $x_api_key)
+    public function getMensajesWithHttpInfo($folio_consulta, $x_api_key)
     {
-        $returnType = '\RccLightSimulacion\Client\Model\PersonasPLD';
-        $request = $this->getPLDRequest($folio_consulta, $x_api_key);
+        $returnType = '\RccLightSimulacion\Client\Model\Mensajes';
+        $request = $this->getMensajesRequest($folio_consulta, $x_api_key);
         try {
             $options = $this->createHttpClientOption();
             try {
@@ -1107,7 +1107,7 @@ class ReporteDeCreditoConsolidadoLightFICOScorePLDApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\RccLightSimulacion\Client\Model\PersonasPLD',
+                        '\RccLightSimulacion\Client\Model\Mensajes',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1173,9 +1173,9 @@ class ReporteDeCreditoConsolidadoLightFICOScorePLDApi
         }
     }
     
-    public function getPLDAsync($folio_consulta, $x_api_key)
+    public function getMensajesAsync($folio_consulta, $x_api_key)
     {
-        return $this->getPLDAsyncWithHttpInfo($folio_consulta, $x_api_key)
+        return $this->getMensajesAsyncWithHttpInfo($folio_consulta, $x_api_key)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1183,10 +1183,10 @@ class ReporteDeCreditoConsolidadoLightFICOScorePLDApi
             );
     }
     
-    public function getPLDAsyncWithHttpInfo($folio_consulta, $x_api_key)
+    public function getMensajesAsyncWithHttpInfo($folio_consulta, $x_api_key)
     {
-        $returnType = '\RccLightSimulacion\Client\Model\PersonasPLD';
-        $request = $this->getPLDRequest($folio_consulta, $x_api_key);
+        $returnType = '\RccLightSimulacion\Client\Model\Mensajes';
+        $request = $this->getMensajesRequest($folio_consulta, $x_api_key);
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
@@ -1223,19 +1223,19 @@ class ReporteDeCreditoConsolidadoLightFICOScorePLDApi
             );
     }
     
-    protected function getPLDRequest($folio_consulta, $x_api_key)
+    protected function getMensajesRequest($folio_consulta, $x_api_key)
     {
         if ($folio_consulta === null || (is_array($folio_consulta) && count($folio_consulta) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $folio_consulta when calling getPLD'
+                'Missing the required parameter $folio_consulta when calling getMensajes'
             );
         }
         if ($x_api_key === null || (is_array($x_api_key) && count($x_api_key) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $x_api_key when calling getPLD'
+                'Missing the required parameter $x_api_key when calling getMensajes'
             );
         }
-        $resourcePath = '/{folioConsulta}/pld';
+        $resourcePath = '/{folioConsulta}/mensajes';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1419,6 +1419,56 @@ class ReporteDeCreditoConsolidadoLightFICOScorePLDApi
         }
     }
     
+    public function getReporteAsync($x_api_key, $body, $x_full_report = 'false')
+    {
+        return $this->getReporteAsyncWithHttpInfo($x_api_key, $body, $x_full_report)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+    
+    public function getReporteAsyncWithHttpInfo($x_api_key, $body, $x_full_report = 'false')
+    {
+        $returnType = '\RccLightSimulacion\Client\Model\Respuesta';
+        $request = $this->getReporteRequest($x_api_key, $body, $x_full_report);
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody;
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+    
     protected function getReporteRequest($x_api_key, $body, $x_full_report = 'false')
     {
         if ($x_api_key === null || (is_array($x_api_key) && count($x_api_key) === 0)) {
@@ -1441,7 +1491,8 @@ class ReporteDeCreditoConsolidadoLightFICOScorePLDApi
             $headerParams['x-api-key'] = ObjectSerializer::toHeaderValue($x_api_key);
         }
         if ($x_full_report !== null) {
-            $headerParams['x-full-report'] = ObjectSerializer::toHeaderValue($x_full_report);        }
+            $headerParams['x-full-report'] = ObjectSerializer::toHeaderValue($x_full_report);
+        }
         $_tempBody = null;
         if (isset($body)) {
             $_tempBody = $body;

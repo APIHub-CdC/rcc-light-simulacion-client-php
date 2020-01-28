@@ -12,15 +12,15 @@ class Score implements ModelInterface, ArrayAccess
     protected static $apihubModelName = 'Score';
     
     protected static $apihubTypes = [
-        'score' => 'string',
-        'razones' => '\RccLightSimulacion\Client\Model\Razon[]',
-        'codigo' => 'string'
+        'nombre_score' => 'string',
+        'valor' => 'int',
+        'razones' => '\RccLightSimulacion\Client\Model\CatalogoRazones[]'
     ];
     
     protected static $apihubFormats = [
-        'score' => null,
-        'razones' => null,
-        'codigo' => null
+        'nombre_score' => null,
+        'valor' => 'int32',
+        'razones' => null
     ];
     
     public static function apihubTypes()
@@ -34,21 +34,21 @@ class Score implements ModelInterface, ArrayAccess
     }
     
     protected static $attributeMap = [
-        'score' => 'score',
-        'razones' => 'razones',
-        'codigo' => 'codigo'
+        'nombre_score' => 'nombreScore',
+        'valor' => 'valor',
+        'razones' => 'razones'
     ];
     
     protected static $setters = [
-        'score' => 'setScore',
-        'razones' => 'setRazones',
-        'codigo' => 'setCodigo'
+        'nombre_score' => 'setNombreScore',
+        'valor' => 'setValor',
+        'razones' => 'setRazones'
     ];
     
     protected static $getters = [
-        'score' => 'getScore',
-        'razones' => 'getRazones',
-        'codigo' => 'getCodigo'
+        'nombre_score' => 'getNombreScore',
+        'valor' => 'getValor',
+        'razones' => 'getRazones'
     ];
     
     public static function attributeMap()
@@ -77,14 +77,20 @@ class Score implements ModelInterface, ArrayAccess
     
     public function __construct(array $data = null)
     {
-        $this->container['score'] = isset($data['score']) ? $data['score'] : null;
+        $this->container['nombre_score'] = isset($data['nombre_score']) ? $data['nombre_score'] : null;
+        $this->container['valor'] = isset($data['valor']) ? $data['valor'] : null;
         $this->container['razones'] = isset($data['razones']) ? $data['razones'] : null;
-        $this->container['codigo'] = isset($data['codigo']) ? $data['codigo'] : null;
     }
     
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+        if (!is_null($this->container['valor']) && ($this->container['valor'] > 900)) {
+            $invalidProperties[] = "invalid value for 'valor', must be smaller than or equal to 900.";
+        }
+        if (!is_null($this->container['valor']) && ($this->container['valor'] < 0)) {
+            $invalidProperties[] = "invalid value for 'valor', must be bigger than or equal to 0.";
+        }
         return $invalidProperties;
     }
     
@@ -93,14 +99,31 @@ class Score implements ModelInterface, ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
     
-    public function getScore()
+    public function getNombreScore()
     {
-        return $this->container['score'];
+        return $this->container['nombre_score'];
     }
     
-    public function setScore($score)
+    public function setNombreScore($nombre_score)
     {
-        $this->container['score'] = $score;
+        $this->container['nombre_score'] = $nombre_score;
+        return $this;
+    }
+    
+    public function getValor()
+    {
+        return $this->container['valor'];
+    }
+    
+    public function setValor($valor)
+    {
+        if (!is_null($valor) && ($valor > 900)) {
+            throw new \InvalidArgumentException('invalid value for $valor when calling Score., must be smaller than or equal to 900.');
+        }
+        if (!is_null($valor) && ($valor < 0)) {
+            throw new \InvalidArgumentException('invalid value for $valor when calling Score., must be bigger than or equal to 0.');
+        }
+        $this->container['valor'] = $valor;
         return $this;
     }
     
@@ -112,17 +135,6 @@ class Score implements ModelInterface, ArrayAccess
     public function setRazones($razones)
     {
         $this->container['razones'] = $razones;
-        return $this;
-    }
-    
-    public function getCodigo()
-    {
-        return $this->container['codigo'];
-    }
-    
-    public function setCodigo($codigo)
-    {
-        $this->container['codigo'] = $codigo;
         return $this;
     }
     
