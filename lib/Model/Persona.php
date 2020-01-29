@@ -175,10 +175,7 @@ class Persona implements ModelInterface, ArrayAccess
         if ($this->container['fecha_nacimiento'] === null) {
             $invalidProperties[] = "'fecha_nacimiento' can't be null";
         }
-        if ($this->container['rfc'] === null) {
-            $invalidProperties[] = "'rfc' can't be null";
-        }
-        if (!preg_match("/^([A-ZÑ,&amp;]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))([A-Z\d]{3})?$/", $this->container['rfc'])) {
+        if (!is_null($this->container['rfc']) && !preg_match("/^([A-ZÑ,&amp;]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))([A-Z\d]{3})?$/", $this->container['rfc'])) {
             $invalidProperties[] = "invalid value for 'rfc', must be conform to the pattern /^([A-ZÑ,&amp;]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))([A-Z\d]{3})?$/.";
         }
         if (!is_null($this->container['curp']) && !preg_match("/^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/", $this->container['curp'])) {
@@ -272,7 +269,7 @@ class Persona implements ModelInterface, ArrayAccess
     
     public function setRfc($rfc)
     {
-        if ((!preg_match("/^([A-ZÑ,&amp;]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))([A-Z\d]{3})?$/", $rfc))) {
+        if (!is_null($rfc) && (!preg_match("/^([A-ZÑ,&amp;]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))([A-Z\d]{3})?$/", $rfc))) {
             throw new \InvalidArgumentException("invalid value for $rfc when calling Persona., must conform to the pattern /^([A-ZÑ,&amp;]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))([A-Z\d]{3})?$/.");
         }
         $this->container['rfc'] = $rfc;
