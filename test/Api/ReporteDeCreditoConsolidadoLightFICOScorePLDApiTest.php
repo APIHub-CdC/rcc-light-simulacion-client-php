@@ -6,27 +6,27 @@ use \RccLightSimulacion\Client\Configuration;
 use \RccLightSimulacion\Client\ApiException;
 use \RccLightSimulacion\Client\ObjectSerializer;
 
-class ReporteDeCreditoConsolidadoLightFICOScorePLDApiTest extends \PHPUnit_Framework_TestCase
+class ReporteDeCrditoConsolidadoLightConFICOScoreApiTest extends \PHPUnit_Framework_TestCase
 {
     
     public function setUp()
     {
         $config = new \RccLightSimulacion\Client\Configuration();
         $config->setHost('the_url');
-        $client = new \GuzzleHttp\Client(['verify' => false]);
-        $this->apiInstance = new \RccLightSimulacion\Client\Api\ReporteDeCreditoConsolidadoLightFICOScorePLDApi($client, $config);
+        $client = new \GuzzleHttp\Client();
+        $this->apiInstance = new \RccLightSimulacion\Client\Api\ReporteDeCrditoConsolidadoLightConFICOScoreApi($client, $config);
         $this->x_api_key = "your_api_key";
     }
 
     public function testGetFullReporte()
     {
         $x_full_report = true;
-        $request = new \RccLightSimulacion\Client\Model\PersonaPeticion();
+        $request = new \RccLightSimulacion\Client\Model\Persona();
         
-        $request->setPrimerNombre("xxxxx");
-        $request->setSegundoNombre(null);
+        $request->setNombres("xxxxx");
         $request->setApellidoPaterno("xxxxx");
         $request->setApellidoMaterno("xxxxx");
+        $request->setRfc("xxxxx");
         $request->setApellidoAdicional(null);
         $request->setFechaNacimiento("yyyy-MM-dd");
 
@@ -35,21 +35,21 @@ class ReporteDeCreditoConsolidadoLightFICOScorePLDApiTest extends \PHPUnit_Frame
             $this->assertNotNull($result);
             echo "testGetFullReporte finished\n";
         } catch (Exception $e) {
-            echo 'Exception when calling ReporteDeCreditoConsolidadoLightFICOScorePLDApi->getReporte: ', $e->getMessage(), PHP_EOL;
+            echo 'Exception when calling ReporteDeCrditoConsolidadoLightConFICOScoreApi->getReporte: ', $e->getMessage(), PHP_EOL;
         }
     }
 
     public function testGetSegmentedReporte()
     {
         $x_full_report = false;
-        $request = new \RccLightSimulacion\Client\Model\PersonaPeticion();
+        $request = new \RccLightSimulacion\Client\Model\Persona();
         
-        $request->setPrimerNombre("ROBERTO");
-        $request->setSegundoNombre(null);
-        $request->setApellidoPaterno("SAHAGUN");
-        $request->setApellidoMaterno("ZARAGOZA");
+        $request->setNombres("xxxxx");
+        $request->setApellidoPaterno("xxxxx");
+        $request->setApellidoMaterno("xxxxx");
+        $request->setRfc("xxxxx");
         $request->setApellidoAdicional(null);
-        $request->setFechaNacimiento("2001-01-01");
+        $request->setFechaNacimiento("yyyy-MM-dd");
 
         try {
             $result = $this->apiInstance->getReporte($this->x_api_key, $request, $x_full_report);
@@ -57,7 +57,7 @@ class ReporteDeCreditoConsolidadoLightFICOScorePLDApiTest extends \PHPUnit_Frame
             echo "testGetSegmentedReporte finished\n";
             return $result->getFolioConsulta();
         } catch (Exception $e) {
-            echo 'Exception when calling ReporteDeCreditoConsolidadoLightFICOScorePLDApi->getReporte: ', $e->getMessage(), PHP_EOL;
+            echo 'Exception when calling ReporteDeCrditoConsolidadoLightConFICOScoreApi->getReporte: ', $e->getMessage(), PHP_EOL;
         }
     }
 
@@ -129,13 +129,13 @@ class ReporteDeCreditoConsolidadoLightFICOScorePLDApiTest extends \PHPUnit_Frame
     /**
      * @depends testGetSegmentedReporte
      */
-    public function testGetPLD($folioConsulta){
+    public function testGetMensajes($folioConsulta){
         try {
-            $result = $this->apiInstance->getPLD($folioConsulta, $this->x_api_key);
-            $this->assertTrue($result->getPLD() !== null);
-            echo "testGetPLD finished\n";
+            $result = $this->apiInstance->getMensajes($folioConsulta, $this->x_api_key);
+            $this->assertTrue($result->getMensajes() !== null);
+            echo "testGetMensajes finished\n";
         } catch (Exception $e) {
-            echo 'Exception when calling ReporteDeCrditoApi->getPLD: ', $e->getMessage(), PHP_EOL;
+            echo 'Exception when calling ReporteDeCrditoApi->getMensajes: ', $e->getMessage(), PHP_EOL;
         }
     }
 }
